@@ -97,6 +97,9 @@ class SearchController extends BaseController
 			$whereParams[':query'] = '%'.$_GET['query'].'%';
 		}
 
+		$where .= " gt.deleted = :notdeleted and e.deleted = :notdeleted and ep.deleted = :notdeleted and p.deleted = :notdeleted";
+		$whereParams[':notdeleted'] = 0;
+
 		$total_items = Yii::app()->db->createCommand()
 			->select("count(gt.id) as count")
 			->from("et_ophingenetictest_test gt")
@@ -147,6 +150,9 @@ class SearchController extends BaseController
 		}
 
 		$test_ids = array();
+
+		$where .= " and gt.deleted = :notdeleted and e.deleted = :notdeleted and ep.deleted = :notdeleted and p.deleted = :notdeleted and c.deleted = :notdeleted and m.deleted = :notdeleted and g.deleted = :notdeleted and ef.deleted = :notdeleted";
+		$whereParams[':notdeleted'] = 0;
 
 		foreach (Yii::app()->db->createCommand()
 			->select("gt.id")
