@@ -28,7 +28,7 @@ class m131114_151248_event_type_OphInGenetictest extends OEMigration
 
 		$this->createTable('ophingenetictest_test_method', array(
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
-				'name' => 'varchar(64) COLLATE utf8_bin NOT NULL',
+				'name' => 'varchar(64) NOT NULL',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
@@ -38,11 +38,11 @@ class m131114_151248_event_type_OphInGenetictest extends OEMigration
 				'KEY `ophingenetictest_test_method_cui_fk` (`created_user_id`)',
 				'CONSTRAINT `ophingenetictest_test_method_lmui_fk` FOREIGN KEY (`last_modified_user_id`) REFERENCES `user` (`id`)',
 				'CONSTRAINT `ophingenetictest_test_method_cui_fk` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`)',
-			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin');
+			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci');
 
 		$this->createTable('ophingenetictest_test_effect', array(
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
-				'name' => 'varchar(64) COLLATE utf8_bin NOT NULL',
+				'name' => 'varchar(64) NOT NULL',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
@@ -52,23 +52,23 @@ class m131114_151248_event_type_OphInGenetictest extends OEMigration
 				'KEY `ophingenetictest_test_effect_cui_fk` (`created_user_id`)',
 				'CONSTRAINT `ophingenetictest_test_effect_lmui_fk` FOREIGN KEY (`last_modified_user_id`) REFERENCES `user` (`id`)',
 				'CONSTRAINT `ophingenetictest_test_effect_cui_fk` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`)',
-			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin');
+			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci');
 
 		$this->createTable('et_ophingenetictest_test', array(
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'event_id' => 'int(10) unsigned NOT NULL',
 				'gene_id' => 'int(10) unsigned NULL',
 				'method_id' => 'int(10) unsigned NULL',
-				'comments' => 'varchar(2048) collate utf8_bin not null',
-				'exon' => 'varchar(64) collate utf8_bin not null',
-				'prime_rf' => 'varchar(64) collate utf8_bin not null',
-				'prime_rr' => 'varchar(64) collate utf8_bin not null',
-				'base_change' => 'varchar(64) collate utf8_bin not null',
-				'amino_acid_change' => 'varchar(64) collate utf8_bin not null',
-				'assay' => 'varchar(64) collate utf8_bin not null',
+				'comments' => 'varchar(2048) NOT NULL',
+				'exon' => 'varchar(64) NOT NULL',
+				'prime_rf' => 'varchar(64) NOT NULL',
+				'prime_rr' => 'varchar(64) NOT NULL',
+				'base_change' => 'varchar(64) NOT NULL',
+				'amino_acid_change' => 'varchar(64) NOT NULL',
+				'assay' => 'varchar(64) NOT NULL',
 				'effect_id' => 'int(10) unsigned NULL',
 				'homo' => 'tinyint(1) unsigned NOT NULL',
-				'result' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
+				'result' => 'varchar(255) DEFAULT \'\'',
 				'result_date' => 'date not null',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
@@ -87,7 +87,7 @@ class m131114_151248_event_type_OphInGenetictest extends OEMigration
 				'CONSTRAINT `et_ophingenetictest_test_ge_fk` FOREIGN KEY (`gene_id`) REFERENCES `pedigree_gene` (`id`)',
 				'CONSTRAINT `et_ophingenetictest_test_me_fk` FOREIGN KEY (`method_id`) REFERENCES `ophingenetictest_test_method` (`id`)',
 				'CONSTRAINT `et_ophingenetictest_test_ef_fk` FOREIGN KEY (`effect_id`) REFERENCES `ophingenetictest_test_effect` (`id`)',
-			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin');
+			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci');
 
 		$this->initialiseData(dirname(__FILE__));
 	}
